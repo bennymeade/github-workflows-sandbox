@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BROWSER_UNDER_TEST: 'chrome@latest:OS X Monterey'
+      QA_ENV_URL: myprivateurl
 
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +25,8 @@ jobs:
           status: ${{ job.status }}
           fields: message,author,eventName,workflow
           icon_emoji: ':speaker:'
-          text: 'echo "branch: ${GITHUB_REF##*/}"' # `(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}`
+          text: 'QA env "$QA_ENV_URL" results :construction_worker:' 
+          # text: 'echo "branch: ${GITHUB_REF##*/}"' # `(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}`
           # text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:' = QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results
           # text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:' = error Unrecognized named-value: 'BROWSER_UNDER_TEST'
           # text: 'QA env tests with BrowserStack $BROWSER_UNDER_TEST results :construction_worker:' = QA env tests with BrowserStack $BROWSER_UNDER_TEST results 
