@@ -24,7 +24,8 @@ jobs:
           status: ${{ job.status }}
           fields: message,author,eventName,workflow
           icon_emoji: ':speaker:'
-          text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:'
+          text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:'
+          # text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:' = error Unrecognized named-value: 'BROWSER_UNDER_TEST'
           # text: 'QA env tests with BrowserStack $BROWSER_UNDER_TEST results :construction_worker:' = QA env tests with BrowserStack $BROWSER_UNDER_TEST results 
           # text: 'QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results :construction_worker:' = QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results
         env:
