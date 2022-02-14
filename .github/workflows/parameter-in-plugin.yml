@@ -19,12 +19,13 @@ jobs:
 
       - name: Slack notification with repo links
         if: always()
-        uses: 8398a7/action-slack@v3.9.0
+        uses: 8398a7/action-slack@v3.13.0
         with:
           status: ${{ job.status }}
           fields: message,author,eventName,workflow
           icon_emoji: ':speaker:'
-          text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:'
+          text: `anything` # `(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}`
+          # text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:' = QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results
           # text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:' = error Unrecognized named-value: 'BROWSER_UNDER_TEST'
           # text: 'QA env tests with BrowserStack $BROWSER_UNDER_TEST results :construction_worker:' = QA env tests with BrowserStack $BROWSER_UNDER_TEST results 
           # text: 'QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results :construction_worker:' = QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results
