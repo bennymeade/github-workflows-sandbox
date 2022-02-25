@@ -25,7 +25,7 @@ jobs:
           status: ${{ job.status }}
           fields: message,author,eventName,workflow
           icon_emoji: ':speaker:'
-          text: 'QA env ${GITHUB_REF##*/} results :construction_worker:' 
+          text: ${GITHUB_REF##*/}
           # text: 'echo "branch: ${GITHUB_REF##*/}"' # `(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}`
           # text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:' = QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results
           # text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:' = error Unrecognized named-value: 'BROWSER_UNDER_TEST'
