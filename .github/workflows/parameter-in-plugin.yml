@@ -25,27 +25,7 @@ jobs:
           status: ${{ job.status }}
           fields: message,author,eventName,workflow
           icon_emoji: ':speaker:'
-          text: ${{ github.head_ref || github.ref_name }}
-          # text: 'echo "branch: ${GITHUB_REF##*/}"' # `(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}`
-          # text: 'QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results :construction_worker:' = QA env tests with BrowserStack ${ BROWSER_UNDER_TEST } results
-          # text: 'QA env tests with BrowserStack ${{ BROWSER_UNDER_TEST }} results :construction_worker:' = error Unrecognized named-value: 'BROWSER_UNDER_TEST'
-          # text: 'QA env tests with BrowserStack $BROWSER_UNDER_TEST results :construction_worker:' = QA env tests with BrowserStack $BROWSER_UNDER_TEST results 
-          # text: 'QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results :construction_worker:' = QA env tests with BrowserStack "$BROWSER_UNDER_TEST" results
+          text: 'Unilever-Online repo: ${{ github.head_ref || github.ref_name }} :construction_worker:'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TEST_AUTOMATION_QA }}
 
-      - name: Slack notification with repo links 2222
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          fields: workflow,job,commit,repo,ref,author,took
-          custom_payload: |
-            {
-              attachments: [{
-                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `Branch ${{ github.head_ref || github.ref_name }} with ${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-              }]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TEST_AUTOMATION_QA }}
-        if: always() # Pick up events even if the job fails or is canceled.
