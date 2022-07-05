@@ -17,6 +17,9 @@ jobs:
       - name: Show inputs
         run: |
           echo "branch: ${GITHUB_REF##*/}"
+          echo "event_name: ${{ github.event_name }}"
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "base_ref: ${{ github.base_ref }}"
           echo "github:" ${{ toJson(github) }}
 
       - name: Slack notification with repo links
