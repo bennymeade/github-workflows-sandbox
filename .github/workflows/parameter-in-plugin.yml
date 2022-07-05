@@ -27,7 +27,8 @@ jobs:
 
       - name: Slack notification with repo links
         # if: always()
-        if: toJson(github.base_ref) == ''
+        if: github.base_ref != ''
+        # if: toJson(github.base_ref) == ''
         uses: 8398a7/action-slack@v3.13.0
         with:
           status: ${{ job.status }}
